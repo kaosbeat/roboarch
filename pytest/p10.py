@@ -11,20 +11,20 @@ robot.append(motion)
 
 
 
-# creates a new instance of the actuator
-pa10 = PA10()
-pa10.add_interface('socket')
-robot.append(pa10)
-# place your component at the correct location
-pa10.translate(0, 0, 0.9)
-pa10.rotate(0, 0, 0)
+# # creates a new instance of the actuator
+# pa10 = PA10()
+# pa10.add_interface('socket')
+# robot.append(pa10)
+# # place your component at the correct location
+# pa10.translate(0, 0, 0.9)
+# pa10.rotate(0, 0, 0)
 
-armature = Armature(model_name = "pa_10")
+# armature = Armature(model_name = "pa_10")
 
 
 depthvideocamera = DepthCamera()
 depthvideocamera.translate(x=0, y=0, z=0.9)
-depthvideocamera.properties(cam_width=1,cam_height=1,retrieve_zbuffer = True)
+depthvideocamera.properties(cam_width=101,cam_height=101,retrieve_zbuffer = True)
 depthvideocamera.add_interface('socket')
 robot.append(depthvideocamera)
 

@@ -20,7 +20,7 @@ class Kukabase(morse.core.robot.Robot):
         morse.core.robot.Robot.__init__(self, obj, parent)
 
         # Do here robot specific initializations
-        logger.info('Component initialized')
+        logger.info('kukabase Component initialized')
 
     def default_action(self):
         """ Main loop of the robot

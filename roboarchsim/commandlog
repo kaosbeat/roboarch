@@ -1,0 +1,306 @@
+LAPTOP-1501155:roboarch kaos$ ls
+README.md       morse           newrobot        pytest          robotest.ipynb  test
+LAPTOP-1501155:roboarch kaos$ morse add --help
+usage: morse add [-h] [-f] {robot,sensor,actuator} name env
+
+positional arguments:
+  {robot,sensor,actuator}
+                        the type of component you want to add.
+  name                  the name of the new component.
+  env                   the environment where to add.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f, --force           overwrite existing component with the same name.
+LAPTOP-1501155:roboarch kaos$ morse create roboarchsim
+* MORSE has only been tested on Linux. It may work
+on other operating systems as well, but without any guarantee
+
+* A new simulation environment has been successfully created in </Users/kaos/roboarch/roboarchsim>.
+
+* You can run it directly with "morse run roboarchsim" or you can start editing it.
+
+LAPTOP-1501155:roboarch kaos$ morse run roboarchsim/
+* Adding </Users/kaos/roboarch/roboarchsim> to PYTHONPATH and MORSE_RESOURCE_PATH.
+
+* Using default scene in environment <roboarchsim/>.
+
+* morse 1.4-148-ga64dc
+
+* MORSE has only been tested on Linux. It may work
+on other operating systems as well, but without any guarantee
+
+* Version 2.79.0 of Blender is untested but should work
+
+* Blender emitted errors during launch:
+2018-05-19 10:49:56.930 blender[44088:2060975] Error loading /Library/Audio/Plug-Ins/HAL/JackRouter.plugin/Contents/MacOS/JackRouter:  dlopen(/Library/Audio/Plug-Ins/HAL/JackRouter.plugin/Contents/MacOS/JackRouter, 262): Library not loaded: /System/Library/Frameworks/Jackmp.framework/Versions/A/Jackmp
+  Referenced from: /Library/Audio/Plug-Ins/HAL/JackRouter.plugin/Contents/MacOS/JackRouter
+  Reason: image not found
+2018-05-19 10:49:56.930 blender[44088:2060975] Cannot find function pointer New_JackRouterPlugIn for factory 7CB18864-927D-48B5-904C-CCFBCFBC7ADD in CFBundle/CFPlugIn 0x10ad1ef40 </Library/Audio/Plug-Ins/HAL/JackRouter.plugin> (bundle, not loaded)
+
+
+2018-05-19 10:49:57.702 blender[44084:2061025] Error loading /Library/Audio/Plug-Ins/HAL/JackRouter.plugin/Contents/MacOS/JackRouter:  dlopen(/Library/Audio/Plug-Ins/HAL/JackRouter.plugin/Contents/MacOS/JackRouter, 262): Library not loaded: /System/Library/Frameworks/Jackmp.framework/Versions/A/Jackmp
+  Referenced from: /Library/Audio/Plug-Ins/HAL/JackRouter.plugin/Contents/MacOS/JackRouter
+  Reason: image not found
+2018-05-19 10:49:57.702 blender[44084:2061025] Cannot find function pointer New_JackRouterPlugIn for factory 7CB18864-927D-48B5-904C-CCFBCFBC7ADD in CFBundle/CFPlugIn 0x10936a4d0 </Library/Audio/Plug-Ins/HAL/JackRouter.plugin> (bundle, not loaded)
+found bundled python: /Applications/Blender/blender.app/Contents/Resources/2.79/python
+Read blend: /usr/local/share/morse/data/morse_default_autorun.blend
+
+Blender Game Engine Started
+==============================
+Welcome to the MORSE simulator
+==============================
+
+[PRE-INITIALIZATION]
+[    0.021] Python Version: 3.5.3
+[    0.022] Blender Version: 2.79.0
+[    0.022] Python path: ['/usr/local/share/morse/data', '/usr/local/share/morse/data/props', '/usr/local/share/morse/data/environments', '/usr/local/share/morse/data/robots', '/Applications/Blender/blender.app/Contents/Resources/2.79/python/lib/python3.5/site-packages', '/Applications/Blender/blender.app/Contents/Resources/2.79/scripts/addons_contrib', '/Users/kaos/Library/Application Support/Blender/2.79/scripts/addons', '/Applications/Blender/blender.app/Contents/Resources/2.79/scripts/addons', '/Applications/Blender/blender.app/Contents/Resources/2.79/scripts/startup', '/Applications/Blender/blender.app/Contents/Resources/2.79/scripts/modules', '/Users/kaos/roboarch/roboarchsim/src', '/usr/local/bin', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python35.zip', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/plat-darwin', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/lib-dynload', '/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages', '/usr/local/lib/python3.5/site-packages', '/Applications/Blender/blender.app/Contents/Resources/2.79/python/lib/python35.zip', '/Applications/Blender/blender.app/Contents/Resources/2.79/python/lib/python3.5', '/Applications/Blender/blender.app/Contents/Resources/2.79/python/lib/python3.5/plat-darwin', '/Applications/Blender/blender.app/Contents/Resources/2.79/python/lib/python3.5/lib-dynload', '/Applications/Blender/blender.app/Contents/Resources/2.79/python/lib/python3.5/site-packages', '/Applications/Blender/blender.app/Contents/Resources/2.79/scripts/freestyle/modules', '/Applications/Blender/blender.app/Contents/Resources/2.79/scripts/addons/modules', '/Users/kaos/Library/Application Support/Blender/2.79/scripts/addons/modules', '/usr/local/lib/python3.5/site-packages/morse/blender', '/usr/local/lib/python3.5/site-packages/morse/blender/human_interaction']
+[    0.022] PID: 44084
+[    0.022] [core.morse_time] Morse configured in Best Effort Mode
+[    0.022] Added Stool6 as a graspable active object
+[    0.022] Added Stool5 as a graspable active object
+[    0.022] Added Stool4 as a graspable active object
+[    0.022] Added Stool3 as a graspable active object
+[    0.023] Added Stool2 as a graspable active object
+[    0.023] Added Stool1 as a graspable active object
+[    0.023] Added Screen4 as a active object
+[    0.023] Added Screen3 as a active object
+[    0.023] Added Screen2 as a active object
+[    0.023] Added Screen1 as a active object
+[    0.023] Added Jump as a active object
+[    0.023] Added Ball8 as a graspable active object
+[    0.023] Added Ball7 as a graspable active object
+[    0.023] Added Ball6 as a graspable active object
+[    0.024] Added Ball5 as a graspable active object
+[    0.024] Added Ball4 as a graspable active object
+[    0.024] Added Ball3 as a graspable active object
+[    0.024] Added Ball2 as a graspable active object
+[    0.024] Added Ball1 as a graspable active object
+[    0.054] [robots.morsy] robot initialization
+[    0.054] [robots.morsy] Component initialized
+[    0.054] [sensors.pose] robot.pose initialization
+[    0.054] [sensors.pose] Component initialized, runs at 60.00 Hz
+[    0.054] Component robot.pose  added to robot
+[    0.070] [actuators.keyboard] robot.keyboard initialization
+[    0.070] [actuators.keyboard] Component initialized
+[    0.070] Component robot.keyboard  added to robot
+[    0.070] [actuators.v_omega] robot.motion initialization
+[    0.070] [actuators.v_omega] Component initialized
+[    0.070] Component robot.motion  added to robot
+
+[SUPERVISION SERVICES INITIALIZATION]
+[    0.082] No multi-node scene configuration file found. Multi-node support disabled.
+[    0.129] [middleware.socket_request_manager] Socket service manager now listening on port 4000.
+[    0.129] [core.services] Successfully initialized the morse.middleware.socket_request_manager.SocketRequestManager request manager.
+[    0.129] Adding 'morse.middleware.socket_request_manager.SocketRequestManager' to the middlewares for simulation control
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'activate' for component 'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'deactivate' for component'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'details' for component 'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'get_camarafp_position' for component 'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'get_camarafp_projection_matrix' for component 'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'get_camarafp_transform' for component 'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'get_scene_objects' for component 'simulation' successfully registered
+[    0.129] [core.request_manager] Socket service manager: Synchronous service 'list_robots' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'quit' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'reset_objects' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'restore_dynamics' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_camarafp_far_clip' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_camarafp_position' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_camarafp_projection_matrix' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_camarafp_transform' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_log_level' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_object_dynamics' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_object_position' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'set_object_visibility' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'suspend_dynamics' for component 'simulation' successfully registered
+[    0.130] [core.request_manager] Socket service manager: Synchronous service 'terminate' for component 'simulation' successfully registered
+[    0.130] Adding 'morse.middleware.socket_request_manager.SocketRequestManager' to the middlewares for communication control
+[    0.131] [core.request_manager] Socket service manager: Synchronous service 'distance_and_view' for component 'communication' successfully registered
+[    0.131] Adding 'morse.middleware.socket_request_manager.SocketRequestManager' to the middlewares for time control
+[    0.131] [core.request_manager] Socket service manager: Synchronous service 'mode' for component 'time' successfully registered
+[    0.131] [core.request_manager] Socket service manager: Synchronous service 'now' for component 'time'successfully registered
+[    0.131] [core.request_manager] Socket service manager: Synchronous service 'set_time_scale' for component 'time' successfully registered
+[    0.131] [core.request_manager] Socket service manager: Asynchronous service 'sleep' for component 'time' successfully registered
+[    0.131] [core.request_manager] Socket service manager: Synchronous service 'statistics' for component'time' successfully registered
+[SUPERVISION SERVICES INITIALIZED]
+
+[SCENE INITIALIZATION]
+[    0.131] [core.request_manager] Socket service manager: Synchronous service 'get_configurations' for component 'robot.motion' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'get_properties' for component 'robot.motion' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'set_property' for component 'robot.motion' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'set_speed' for component 'robot.motion' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'stop' for component 'robot.motion' successfully registered
+[    0.132] Component: 'robot.motion' using middleware 'morse.middleware.socket_request_manager.SocketRequestManager' for services
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'get_configurations' for component 'robot.keyboard' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'get_properties' for component 'robot.keyboard' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'set_property' for component 'robot.keyboard' successfully registered
+[    0.132] Component: 'robot.keyboard' using middleware 'morse.middleware.socket_request_manager.SocketRequestManager' for services
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'get_configurations' for component 'robot.pose' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'get_local_data' for component 'robot.pose' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'get_properties' for component 'robot.pose' successfully registered
+[    0.132] [core.request_manager] Socket service manager: Synchronous service 'set_property' for component 'robot.pose' successfully registered
+[    0.133] Component: 'robot.pose' using middleware 'morse.middleware.socket_request_manager.SocketRequestManager' for services
+[    0.133] Component: 'robot.motion' using datastream 'morse.middleware.socket_datastream.SocketDatastreamManager'
+[    0.133] [core.request_manager] Socket service manager: Synchronous service 'list_streams' for component 'simulation' successfully registered
+[    0.133] [core.request_manager] Socket service manager: Synchronous service 'get_stream_port' for component 'simulation' successfully registered
+[    0.133] [core.request_manager] Socket service manager: Synchronous service 'get_all_stream_ports' forcomponent 'simulation' successfully registered
+[    0.133]     Datastream interface 'morse.middleware.socket_datastream.SocketDatastreamManager' created
+[    0.133] [middleware.socket_datastream] Socket Mw Server now listening on port 60000 for component robot.motion.
+[    0.133] Component: 'robot.pose' using datastream 'morse.middleware.socket_datastream.SocketDatastreamManager'
+[    0.133] [middleware.socket_datastream] Socket Mw Server now listening on port 60001 for component robot.pose.
+[    0.133]
+[    0.133] ------------------------------------
+[    0.133] -        SIMULATION SUMMARY        -
+[    0.133] ------------------------------------
+[    0.133] Robots in the simulation:
+[    0.133]     ROBOT: 'robot'
+[    0.133]             - Component: 'robot.pose'
+[    0.134]             - Component: 'robot.keyboard'
+[    0.134]             - Component: 'robot.motion'
+[    0.134] Available services:
+[    0.134]     - Interface morse.middleware.socket_request_manager.SocketRequestManager
+[    0.134]             - robot.motion: ['set_property', 'set_speed', 'get_configurations', 'stop', 'get_properties']
+[    0.134]             - communication: ['distance_and_view']
+[    0.134]             - robot.pose: ['get_configurations', 'set_property', 'get_local_data', 'get_properties']
+[    0.134]             - simulation: ['set_camarafp_transform', 'set_object_visibility', 'get_scene_objects', 'suspend_dynamics', 'get_camarafp_position', 'list_robots', 'set_object_dynamics', 'get_camarafp_transform', 'set_camarafp_far_clip', 'restore_dynamics', 'details', 'deactivate', 'get_all_stream_ports', 'set_camarafp_position', 'activate', 'get_camarafp_projection_matrix', 'set_object_position', 'get_stream_port', 'terminate', 'list_streams', 'set_log_level', 'set_camarafp_projection_matrix', 'reset_objects', 'quit']
+[    0.134]             - robot.keyboard: ['get_properties', 'set_property', 'get_configurations']
+[    0.134]             - time: ['now', 'set_time_scale', 'sleep', 'statistics', 'mode']
+[    0.134] Modifiers in use:
+[    0.134]     None
+[    0.134]
+[    0.134] Datastream interfaces configured:
+[    0.135]     - 'morse.middleware.socket_datastream.SocketDatastreamManager'
+[    0.135] ------------------------------------
+[    0.135]
+[SCENE INITIALIZED]
+[COMPONENTS FINALIZATION]
+[   10.927] [core.abstractobject] robot.motion: I'm dying!!
+[   10.927] [middleware.socket_datastream] Shutting down connections to server...
+[   10.927] [middleware.socket_datastream] Closing socket server...
+[   10.927] [core.abstractobject] robot.keyboard: I'm dying!!
+[   10.927] [core.abstractobject] robot.pose: I'm dying!!
+[   10.927] [middleware.socket_datastream] Shutting down connections to server...
+[   10.927] [middleware.socket_datastream] Closing socket server...
+[   10.927] [core.abstractobject] robot: I'm dying!!
+[CLOSING REQUEST MANAGERS...]
+[   10.927] [core.services] Deleting all request managers...
+[   10.927] [middleware.socket_request_manager] Shutting down connections to server...
+Exception ignored in: <bound method MorseServices.__del__ of <morse.core.services.MorseServices object at0x11e01bcc0>>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/morse/core/services.py", line 79, in __del__
+    if not rqst_manager.finalization():
+  File "/usr/local/lib/python3.5/site-packages/morse/middleware/socket_request_manager.py", line 80, in finalization
+    self._server.shutdown(socket.SHUT_RDWR)
+OSError: [Errno 57] Socket is not connected
+[CLOSING DATASTREAMS...]
+[   10.928] [core.datastream] Closing datastream interface <SocketDatastreamManager>.
+[CLOSING OVERLAYS...]
+[EXITING SIMULATION]
+Blender Game Engine Finished
+LAPTOP-1501155:roboarch kaos$ morse add robot kukabase roboarchsim
+* MORSE has only been tested on Linux. It may work
+on other operating systems as well, but without any guarantee
+
+
+A template for a new robot called <kukabase> has been
+added to the <roboarchsim> environment.
+
+----------------------------------------------------------
+To complete the equipment of your robot, edit:
+/Users/kaos/roboarch/roboarchsim/src/roboarchsim/builder/robots/kukabase.py
+
+You can also modify its Blender mesh:
+/Users/kaos/roboarch/roboarchsim/data/roboarchsim/robots/kukabase.blend
+
+For advanced usage, you may also edit its internal
+definition here:
+/Users/kaos/roboarch/roboarchsim/src/roboarchsim/robots/kukabase.py
+----------------------------------------------------------
+
+To use the robot in your simulation script, add the following
+lines:
+
+
+from roboarchsim.builder.robots import Kukabase
+
+# add a new kukabase robot in the simulation
+kukabase = Kukabase()
+#kukabase.translate(...)
+#kukabase.add_default_interface('socket')
+
+
+----------------------------------------------------------
+Happy simulation!
+
+LAPTOP-1501155:roboarch kaos$ open .
+LAPTOP-1501155:roboarch kaos$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   pytest/p10.py
+        modified:   pytest/runthis.py
+        modified:   pytest/start.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .ipynb_checkpoints/
+        morse/
+        newrobot/
+        roboarchsim/
+        robotest.ipynb
+        test/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+LAPTOP-1501155:roboarch kaos$ git add roboarchsim/
+LAPTOP-1501155:roboarch kaos$ git commit robo
+roboarchsim/    robotest.ipynb
+LAPTOP-1501155:roboarch kaos$ git commit roboarchsim/ -m "basic template "
+[master ec2c40e] basic template
+ 9 files changed, 174 insertions(+)
+ create mode 100644 roboarchsim/data/roboarchsim/robots/kukabase.blend
+ create mode 100644 roboarchsim/default.py
+ create mode 100644 roboarchsim/scripts/roboarchsim_client.py
+ create mode 100644 roboarchsim/src/roboarchsim/__init__.py
+ create mode 100644 roboarchsim/src/roboarchsim/builder/__init__.py
+ create mode 100644 roboarchsim/src/roboarchsim/builder/robots/__init__.py
+ create mode 100644 roboarchsim/src/roboarchsim/builder/robots/kukabase.py
+ create mode 100644 roboarchsim/src/roboarchsim/robots/__init__.py
+ create mode 100644 roboarchsim/src/roboarchsim/robots/kukabase.py
+LAPTOP-1501155:roboarch kaos$ git commit -a -m "testscripts"
+[master 94d7b7c] testscripts
+ 3 files changed, 90 insertions(+), 52 deletions(-)
+LAPTOP-1501155:roboarch kaos$ morse add sensor probeviz roboarchsim
+* MORSE has only been tested on Linux. It may work
+on other operating systems as well, but without any guarantee
+
+Enter a short description for sensor <probeviz>: visualiseses probe vector
+
+A template for a new sensor called <probeviz> has been
+added to the <roboarchsim> environment.
+
+----------------------------------------------------------
+Edit /Users/kaos/roboarch/roboarchsim/src/roboarchsim/sensors/probeviz.py to implement the
+behaviour of your sensor.
+
+----------------------------------------------------------
+To use it on your robot, edit your robot description in
+/Users/kaos/roboarch/roboarchsim/src/roboarchsim/builder/robots/
+and add these lines:
+
+
+from roboarchsim.builder.sensors import Probeviz
+
+# create a new probeviz sensor
+probeviz = Probeviz()
+
+robot.append(probeviz)
+
+
+----------------------------------------------------------
+Happy simulation!
