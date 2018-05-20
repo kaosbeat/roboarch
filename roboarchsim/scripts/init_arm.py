@@ -19,7 +19,7 @@ def print_pos(pose):
 
 def probedata(probe):
     global bigsensorvalue
-    # print("probing %s" % probe)
+    print("probing %s" % probe)
     client.send_message("/probe/x", probe['x'])
     client.send_message("/probe/y", probe['y'])
     client.send_message("/probe/z", probe['z'])
@@ -124,7 +124,46 @@ def list_scan_limits():
         print(simu.robot.arm.probeviz.get_local_data())
         simu.sleep(5)                        
         print(simu.robot.arm.probeviz.get_local_data())
-    
+
+def moveTo4corners():
+    cx = 0
+    cy = 0
+    cz = 0.6
+    x1 = 0.4 
+    y1 = -0.02
+    z1 = 0.2
+    x2 = x1
+    y2 = -0.02
+    z2 = -0.2
+    x3 = x1
+    y3 = 0.02
+    z3 = -0.2
+    x4 = x1
+    y4 = 0.02
+    z4 = 0.2
+    with pymorse.Morse() as simu:
+        # simu.robot.arm.probeviz.subscribe(probedata)
+        # move_IK_target(name, translation, rotation, relative, linear_speed, radial_speed) (non blocking)
+        simu.robot.arm.move_IK_target('ik_target.robot.arm.kuka_7', [cx+x1,cy+y1,cz+z1], [0.0,0.0,0.0], False, 1,1 )
+        # simu.robot.arm.place_IK_target('ik_target.robot.arm.kuka_7', [cx+x1,cy+y1,cz+z1], [0.0,0.0,0.0], False)
+        print(simu.robot.arm.probeviz.get_local_data())
+
+        # simu.robot.arm.place_IK_target('ik_target.robot.arm.kuka_7', [0.02,0.05*x,0], [0.0,0.0,0.0], True)
+        simu.sleep(3)
+        simu.robot.arm.move_IK_target('ik_target.robot.arm.kuka_7', [cx+x2,cy+y2,cz+z2], [0.0,0.0,0.0], False, 1,1 )
+        # simu.robot.arm.place_IK_target('ik_target.robot.arm.kuka_7', [cx+x2,cy+y2,cz+z2], [0.0,0.0,0.0], False )
+        print(simu.robot.arm.probeviz.get_local_data())
+
+        simu.sleep(3)
+        simu.robot.arm.move_IK_target('ik_target.robot.arm.kuka_7', [cx+x3,cy+y3,cz+z3], [0.0,0.0,0.0], False, 1,1 )
+        # simu.robot.arm.place_IK_target('ik_target.robot.arm.kuka_7', [cx+x3,cy+y3,cz+z3], [0.0,0.0,0.0], False )
+        print(simu.robot.arm.probeviz.get_local_data())
+
+        simu.sleep(3)
+        simu.robot.arm.move_IK_target('ik_target.robot.arm.kuka_7', [cx+x4,cy+y4,cz+z4], [0.0,0.0,0.0], False, 1,1 )
+        # simu.robot.arm.place_IK_target('ik_target.robot.arm.kuka_7', [cx+x4,cy+y4,cz+z4], [0.0,0.0,0.0], False)
+        print(simu.robot.arm.probeviz.get_local_data())
+
 # def probe_value():
 #     with pymorse.Morse() as simu:
 #         simu.robot.arm.probeviz.subscribe(probedata)
@@ -136,7 +175,11 @@ def list_scan_limits():
 # # set_horizontal()
 
 
+moveTo4corners()
+
+
+
 # list_scan_limits()
 # startScan()
 
-jump_to_new_scan()
+# jump_to_new_scan()
