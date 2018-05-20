@@ -29,8 +29,8 @@ void draw() {
     float xpos = map(x, -1, 1, 0, width );
     float ypos = map(y, -1, 1, 0 ,height);
     //float size = 5;
-    float fill = 120;
-    //float fill = probevalue/4;
+    //float fill = 120;
+    float fill = probevalue/4;
     float size = probevalue/20;
     fill(255);
     rect(20,620,50,1024/20);
@@ -53,13 +53,15 @@ void draw() {
     else if (col.equals("green")) {
       fill(215,223,5,fill);
     }
-    else if (probevalue >= 512){
+    
+    if (probevalue >= 512){
       fill(255,0,0);
       size = 5;
+      
     }
     
-    ellipse(xpos,ypos,size,size);
     
+    ellipse(xpos,ypos,size,size);
 }
 
 
