@@ -2,11 +2,25 @@ import pymorse
 import struct
 import string
 import numpy as np
+import argparse
+import random
+import time
+
+from pythonosc import osc_message_builder
+from pythonosc import udp_client
+
+###setup osc client
+client = udp_client.SimpleUDPClient("127.0.0.1", 1238)
 
 
 
 def print_pos(pose):
     print("I'm currently at %s" % pose)
+    
+
+def probedata(probe):
+    print("probing %s" % probe)
+    client.send_message("/probe/data", probe['distance'])
 
 def depthdata(data):
     print(data['points'])
@@ -57,7 +71,17 @@ def set_horizontal():
         
         simu.robot.arm.depthvideocamera.capture(-1)
         simu.robot.arm.depthvideocamera.subscribe(depthdata)
- 
+        
 
 
-set_horizontal()
+def probe_value():
+    with pymorse.Morse() as simu:
+        simu.robot.arm.probeviz.subscribe(probedata)
+        # simu.robot.arm.armpose.subscribe(print_pos)
+        while True:
+            simu.robot.arm.probeviz.get_local_data()
+            # simu.robot.arm.probeviz.subscribe(probedata)
+            # simu.robot.arm.probeviz.publish({"test": 45})
+# set_horizontal()
+
+probe_value()

@@ -22,6 +22,7 @@ robot.append(motion)
 arm.translate(z=0.3)
 armpose = Pose()
 armpose.add_interface('socket')
+armpose.add_stream('socket')
 arm.append(armpose)
 
 
@@ -52,6 +53,8 @@ probeviz = Probeviz()
 probeviz.translate(x=0, y=0.0, z=1.28)
 probeviz.rotate(x=0, y=1.571, z=0)
 arm.append(probeviz)
+probeviz.add_interface('socket')
+probeviz.add_stream('socket')
 
 
 

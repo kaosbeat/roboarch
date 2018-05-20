@@ -17,7 +17,7 @@ class Probeviz(morse.core.sensor.Sensor):
     # format is: field name, default initial value, type, description
     add_data('distance', 0.0, 'float', 'A dummy odometer, for testing purposes. Distance in meters')
     add_data('color', 'none', 'str', 'A dummy colorimeter, for testing purposes. Default to \'none\'.')
-
+    
     def __init__(self, obj, parent=None):
         logger.info("%s initialization" % obj.name)
         # Call the constructor of the parent class
@@ -27,7 +27,7 @@ class Probeviz(morse.core.sensor.Sensor):
 
         self._distance = 0 # dummy internal variable, for testing purposes
 
-        logger.info('Component initialized')
+        logger.info('probeviz component initialized')
 
     @service
     def get_current_distance(self):
@@ -49,10 +49,11 @@ class Probeviz(morse.core.sensor.Sensor):
         """
 
         import random
-
+        self.local_data['distance'] = random.randint(0, 1024)
         # implement here the behaviour of your sensor
 
-        self.local_data['distance'] = self.position_3d.x # distance along X in world coordinates
+
+        # self.local_data['distance'] = self.position_3d.x # distance along X in world coordinates
 
         # our test sensor sees a random color
         self.local_data['color'] = random.choice(["blue", "red", "green", "yellow"])

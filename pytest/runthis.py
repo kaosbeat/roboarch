@@ -49,11 +49,11 @@ with pymorse.Morse() as simu:
     ###configure depth camera
     # simu.robot.depthvideocamera.set_property('cam_width', 1)
     # simu.robot.depthvideocamera.set_property('cam_height', 1)
-    # print(simu.robot.pa10.list_IK_targets())
+    print(simu.robot.pa10.list_IK_targets())
     print(simu.robot.arm.list_IK_targets())
 
     # subscribes to updates from the Pose sensor by passing a callback
-    # simu.robot.pose.subscribe(print_pos)
+    simu.robot.pose.subscribe(print_pos)
     # simu.robot.arm.arm_pose.subscribe(print_pos)
     # sends a destination
     simu.robot.motion.publish({'x' : 4.0, 'y': 0.0, 'z': 0.0,
@@ -61,7 +61,7 @@ with pymorse.Morse() as simu:
                               'speed' : 1.0})
 
     # simu.robot.pa10.set_rotation_array(1,1,0,-1,0)
-    # simu.robot.depthvideocamera.subscribe(depthdata)
+    simu.robot.depthvideocamera.subscribe(depthdata)
     # Leave a couple of millisec to the simulator to start the action
     simu.sleep(0.1)
     # simu.robot.depthvideocamera.capture(1)
@@ -69,7 +69,7 @@ with pymorse.Morse() as simu:
     # waits until we reach the target
     while simu.robot.motion.get_status() != "Arrived":
     # while True:
-        # simu.robot.depthvideocamera.capture(-1)
+        simu.robot.depthvideocamera.capture(-1)
         simu.sleep(0.5)
 
     print("Here we are!")
