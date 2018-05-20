@@ -1,6 +1,9 @@
 import logging; logger = logging.getLogger("morse." + __name__)
 
 import morse.core.sensor
+import math
+from roboarchsim.builder.sensors import perlin
+# import perlin
 
 from morse.core.services import service, async_service
 from morse.core import status
@@ -15,7 +18,11 @@ class Probeviz(morse.core.sensor.Sensor):
 
     # define here the data fields exported by your sensor
     # format is: field name, default initial value, type, description
-    add_data('distance', 0.0, 'float', 'A dummy odometer, for testing purposes. Distance in meters')
+    add_data('probevalue', 0.0, 'int', 'random testdata')
+    add_data('distance', 0.0, 'float', 'Distance from origin in meters')
+    add_data('x', 0.0, 'float', 'xpos')
+    add_data('y', 0.0, 'float', 'ypos')
+    add_data('z', 0.0, 'float', 'zpos')
     add_data('color', 'none', 'str', 'A dummy colorimeter, for testing purposes. Default to \'none\'.')
     
     def __init__(self, obj, parent=None):
@@ -28,6 +35,8 @@ class Probeviz(morse.core.sensor.Sensor):
         self._distance = 0 # dummy internal variable, for testing purposes
 
         logger.info('probeviz component initialized')
+        self._step = 0
+        self._pnf = perlin.PerlinNoiseFactory(1,2)
 
     @service
     def get_current_distance(self):
@@ -47,14 +56,19 @@ class Probeviz(morse.core.sensor.Sensor):
 
         Implements the component behaviour
         """
-
+        self._step = self._step + 1
         import random
-        self.local_data['distance'] = random.randint(0, 1024)
         # implement here the behaviour of your sensor
 
-
-        # self.local_data['distance'] = self.position_3d.x # distance along X in world coordinates
-
+        # self.local_data['probevalue'] = random.randint(0, 1024)
+        self.local_data['probevalue'] = 512 + 512*self._pnf(self._step/1000)
+        # self.local_data['probevalue'] = self._pnf(self._step/1000)
+        self.local_data['distance'] = math.sqrt(pow(self.position_3d.x, 2) + pow(self.position_3d.y, 2) + pow(self.position_3d.z, 2))
+        self.local_data['x'] = self.position_3d.x 
+        self.local_data['y'] = self.position_3d.y
+        self.local_data['z'] = self.position_3d.z
         # our test sensor sees a random color
         self.local_data['color'] = random.choice(["blue", "red", "green", "yellow"])
 
+    def reset_step(self):
+        self._step = 0;
