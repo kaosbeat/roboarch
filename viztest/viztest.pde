@@ -1,7 +1,9 @@
 import oscP5.*;
 
 OscP5 control;
-float x,y,z,distance,xpos,ypos;
+float x= 0;
+float y = 0;
+float z,distance,xpos,ypos;
 String col;
 float probevalue;
 
@@ -15,27 +17,32 @@ void setup() {
   frameRate(30);
     control = new OscP5(this, 1238);  ///morses output port
       background(0);
-  
+  noStroke();
 }
 
 
 void draw() {
-    float xpos = width + x*2000;
-    float ypos = height + y*2000;
-    float size= probevalue/50;
+    //float xpos = map(x, -0.4727309048175812, 0.4922410547733307, 0, width );
+    //float ypos = map(y, -0.24367988109588623, 0.22952084243297577, 0 ,height);
+    //println(x,y);
+    float xpos = map(x, -1, 1, 0, width );
+    float ypos = map(y, -1, 1, 0 ,height);
+    
+    float size= probevalue/20;
     if (col.equals("yellow")) {
-      //println(xpos,ypos,col);
-      fill(0,255,255,123);
+      //println(xpos,ypos,probevalue);
+      fill(0,255,255,probevalue/4);
     }
     else if (col.equals("blue")) {
-      fill(255,0,255,123);
+      fill(255,0,255,probevalue/4);
     }
     else if (col.equals("red")) {
-      fill(25,23,255,123);
+      fill(25,23,255,probevalue/4);
     }
     else if (col.equals("green")) {
-      fill(215,223,5,123);
+      fill(215,223,5,probevalue/4);
     }
+    
     ellipse(xpos,ypos,size,size);
     
 }

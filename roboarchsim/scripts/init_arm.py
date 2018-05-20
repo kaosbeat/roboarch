@@ -9,6 +9,7 @@ import time
 from pythonosc import osc_message_builder,osc_bundle_builder
 from pythonosc import udp_client
 
+bigsensorvalue = False
 ###setup osc client
 client = udp_client.SimpleUDPClient("127.0.0.1", 1238)
 
@@ -17,6 +18,7 @@ def print_pos(pose):
     
 
 def probedata(probe):
+    global bigsensorvalue
     # print("probing %s" % probe)
     client.send_message("/probe/x", probe['x'])
     client.send_message("/probe/y", probe['y'])
@@ -24,7 +26,13 @@ def probedata(probe):
     client.send_message("/probe/distance", probe['distance'])
     client.send_message("/probe/value", probe['probevalue'])
     client.send_message("/probe/color", probe['color'])
+    if probe['probevalue'] > 512:
+        print("bigsensorvalue!")
+        bigsensorvalue = True
+        
 
+def probedatalimits(probelimit):
+    print("probing %s" % probelimit)
 
 def startScan():
     with pymorse.Morse() as simu:
@@ -55,21 +63,68 @@ def startScan():
         # simu.sleep(1)
         # simu.armpose.subscribe(print_pos)
 
+def startRelativeScan(xpos, ypos):
+    global bigsensorvalue
+    with pymorse.Morse() as simu:
+        simu.robot.arm.probeviz.subscribe(probedata)
+        speed = 0.5
+        for x in range(10):
+            if bigsensorvalue:
+                bigsensorvalue = False
+                break
+            simu.robot.arm.rotate("kuka_1", xpos, speed)
+            simu.sleep(1)
+            for y in range(10):
+                if bigsensorvalue:
+                    break
+                simu.robot.arm.rotate("kuka_2", xpos+x*0.1, speed)
+                simu.robot.arm.rotate("kuka_1", ypos+y*0.1, speed)
+                simu.sleep(0.3)
+    jump_to_new_scan()
+    
 def set_horizontal():
     with pymorse.Morse() as simu:
         simu.robot.arm.set_rotation("kuka_2", -3.14/4)
         simu.robot.arm.set_rotation("kuka_4", 3.14/4)
-        
         simu.robot.arm.depthvideocamera.capture(-1)
         simu.robot.arm.depthvideocamera.subscribe(depthdata)
         
-
 def jump_to_new_scan():
+    xpos = (random.random()*2) - 1
+    ypos = (random.random()*2) - 1
     with pymorse.Morse() as simu:
-        simu.robot.arm.set_rotation("kuka_2", x*0.01)
-        simu.robot.arm.set_rotation("kuka_1", y*0.01)
+        simu.robot.arm.set_rotation("kuka_2", xpos) ##, 2 ) ### limits [-2.9670610427856445, 2.9670610427856445]
+        simu.robot.arm.set_rotation("kuka_1", ypos )##, 2)  ### limits [-2.0943961143493652, 2.0943961143493652]
+        simu.sleep(5)
+        startRelativeScan(xpos,ypos)
+        
 
-
+def list_scan_limits():
+    ## to better map the values of the scan in a 2D space it's usefull to get the bounds, as detected by this function
+    with pymorse.Morse() as simu:
+        speed = 2
+        # simu.robot.arm.probeviz.subscribe(probedatalimits)
+        simu.robot.arm.rotate("kuka_1", -2.0670610427856445, speed)
+        simu.robot.arm.set_rotation("kuka_2", -1.5943961143493652)#, speed)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.sleep(5)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.robot.arm.rotate("kuka_1", -2.0670610427856445,speed)
+        simu.robot.arm.rotate("kuka_2", 1.5943961143493652,speed)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.sleep(5)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.robot.arm.rotate("kuka_1", 2.0670610427856445,speed)
+        simu.robot.arm.rotate("kuka_2", -1.5943961143493652,speed)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.sleep(5)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.robot.arm.rotate("kuka_1", 2.0670610427856445,speed)
+        simu.robot.arm.rotate("kuka_2", 1.3943961143493652,speed)
+        print(simu.robot.arm.probeviz.get_local_data())
+        simu.sleep(5)                        
+        print(simu.robot.arm.probeviz.get_local_data())
+    
 # def probe_value():
 #     with pymorse.Morse() as simu:
 #         simu.robot.arm.probeviz.subscribe(probedata)
@@ -81,5 +136,7 @@ def jump_to_new_scan():
 # # set_horizontal()
 
 
+# list_scan_limits()
+# startScan()
 
-startScan()
+jump_to_new_scan()
