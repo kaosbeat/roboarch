@@ -19,7 +19,7 @@ def print_pos(pose):
 
 def probedata(probe):
     global bigsensorvalue
-    print("probing %s" % probe)
+    print("probing %s" % probe['probevalue'])
     client.send_message("/probe/x", probe['x'])
     client.send_message("/probe/y", probe['y'])
     client.send_message("/probe/z", probe['z'])
@@ -65,23 +65,74 @@ def startScan():
 
 def startRelativeScan(xpos, ypos):
     global bigsensorvalue
+    limitx = -2.0    
+    limitX = 2.0
+    limity = -1.57
+    limitY = 1.57
     with pymorse.Morse() as simu:
         simu.robot.arm.probeviz.subscribe(probedata)
-        speed = 0.5
+        speed = 0.1
         for x in range(10):
             if bigsensorvalue:
                 bigsensorvalue = False
+                jump_to_new_scan()
                 break
-            simu.robot.arm.rotate("kuka_1", xpos, speed)
-            simu.sleep(1)
+            if (xpos+x*0.5 > limitX):
+                break
+            if (xpos+x*0.5 < limitx):
+                break
+            simu.robot.arm.rotate("kuka_2", xpos + (x*0.5), 2 )
+            # simu.sleep(1)
             for y in range(10):
                 if bigsensorvalue:
+                    jump_to_new_scan()
                     break
-                simu.robot.arm.rotate("kuka_2", xpos+x*0.1, speed)
-                simu.robot.arm.rotate("kuka_1", ypos+y*0.1, speed)
-                simu.sleep(0.3)
+                if (ypos+y*0.5 > limitY):
+                    break
+                if (ypos+y*0.5 < limity):
+                    break
+                simu.robot.arm.rotate("kuka_2", xpos+ (x*0.1), speed)
+                simu.robot.arm.rotate("kuka_1", ypos+ (y*0.1), speed)
+                # simu.sleep(0.3)
     jump_to_new_scan()
-    
+
+def scanArea():
+    global bigsensorvalue
+    ax1 = random.random()
+    ax2 = random.random()
+    # limitax1 = -2.0    
+    # limitAX1 = 2.0
+    # limitax2 = -1.57
+    # limitAX2 = 1.57
+    # axe1 = (abs(limitax1) - abs(limitAX1))*ax1 + limitax1
+    # axe2 = (abs(limitax2) - abs(limitAX2))*ax2 + limitax2
+    axe1 = ax1 * 2
+    axe2 = ax2 * 1
+    print(axe1,axe2)
+    with pymorse.Morse() as simu:
+        simu.robot.arm.probeviz.subscribe(probedata)
+        # goto start axis 1&2
+        simu.robot.arm.set_rotation("kuka_1",axe1)
+        simu.sleep(1)
+        simu.robot.arm.set_rotation("kuka_2",axe2)
+        # start scan
+        for i in range(10):
+            print(simu.robot.arm.probeviz.get_local_data())
+            if bigsensorvalue:
+                bigsensorvalue = False
+                break
+            for j in range(10):
+                if bigsensorvalue:
+                    bigsensorvalue = False
+                    break
+                simu.robot.arm.set_rotation("kuka_1",axe1 + i*0.03)
+                simu.sleep(0.01)
+                simu.robot.arm.set_rotation("kuka_2",axe2 + j*0.03)
+                simu.sleep(0.01)
+    scanArea()
+
+
+
 def set_horizontal():
     with pymorse.Morse() as simu:
         simu.robot.arm.set_rotation("kuka_2", -3.14/4)
@@ -95,7 +146,8 @@ def jump_to_new_scan():
     with pymorse.Morse() as simu:
         simu.robot.arm.set_rotation("kuka_2", xpos) ##, 2 ) ### limits [-2.9670610427856445, 2.9670610427856445]
         simu.robot.arm.set_rotation("kuka_1", ypos )##, 2)  ### limits [-2.0943961143493652, 2.0943961143493652]
-        simu.sleep(5)
+        simu.sleep(1)
+        print(xpos,ypos)
         startRelativeScan(xpos,ypos)
         
 
@@ -175,7 +227,7 @@ def moveTo4corners():
 # # set_horizontal()
 
 
-moveTo4corners()
+# moveTo4corners()
 
 
 
@@ -183,3 +235,4 @@ moveTo4corners()
 # startScan()
 
 # jump_to_new_scan()
+scanArea()
