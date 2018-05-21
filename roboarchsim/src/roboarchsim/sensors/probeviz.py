@@ -37,6 +37,7 @@ class Probeviz(morse.core.sensor.Sensor):
         logger.info('probeviz component initialized')
         self._step = 0
         self._pnf = perlin.PerlinNoiseFactory(1,2)
+        self._pnf2 = perlin.PerlinNoiseFactory(2,2)
 
     @service
     def get_current_distance(self):
@@ -61,7 +62,9 @@ class Probeviz(morse.core.sensor.Sensor):
         # implement here the behaviour of your sensor
 
         # self.local_data['probevalue'] = random.randint(0, 1024)
-        self.local_data['probevalue'] = 512 + 512*self._pnf(self._step/1000)
+        # self.local_data['probevalue'] = 512 + 512*self._pnf(self._step/1000)
+        self.local_data['probevalue'] = 450 + 512*self._pnf2(self.position_3d.x/3, self.position_3d.y/2)
+
         # self.local_data['probevalue'] = self._pnf(self._step/1000)
         self.local_data['distance'] = math.sqrt(pow(self.position_3d.x, 2) + pow(self.position_3d.y, 2) + pow(self.position_3d.z, 2))
         self.local_data['x'] = self.position_3d.x 

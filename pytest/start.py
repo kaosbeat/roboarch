@@ -17,6 +17,8 @@ robot.append(pose)
 
 
 
+
+
 semanticL = SemanticCamera()
 semanticL.translate(x=0.2, y=0.3, z=0.9)
 robot.append(semanticL)
@@ -26,15 +28,15 @@ semanticL.properties(cam_far=800)
 # semanticL.add_stream('socket')
 
 
-# arm_pose = ArmaturePose()
-# # the sensor is appended to the armature, *not* to the robot
-# arm.append(arm_pose)
+arm_pose = ArmaturePose()
+# the sensor is appended to the armature, *not* to the robot
+arm.append(arm_pose)
 
 
 
-# # arm_pose.stream('socket')
-# arm_pose.add_service('socket')
-# # env = Environment('empty')
+arm_pose.stream('socket')
+arm_pose.add_service('socket')
+# env = Environment('empty')
 
 
 # arm.rotate(z=0.9)

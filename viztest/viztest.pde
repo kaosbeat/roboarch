@@ -40,19 +40,22 @@ void draw() {
     text(int(probevalue), 25, 720);
     fill(255,0,0);
     rect(20,620,50,size);
-    if (col.equals("yellow")) {
-      //println(xpos,ypos,probevalue);
-      fill(0,255,255,fill);
-    }
-    else if (col.equals("blue")) {
-      fill(255,0,255,fill);
-    }
-    else if (col.equals("red")) {
-      fill(25,23,255,fill);
-    }
-    else if (col.equals("green")) {
-      fill(215,223,5,fill);
-    }
+    //if (col.equals("yellow")) {
+    //  //println(xpos,ypos,probevalue);
+    //  fill(0,255,255,fill);
+    //}
+    //else if (col.equals("blue")) {
+    //  fill(255,0,255,fill);
+    //}
+    //else if (col.equals("red")) {
+    //  fill(25,23,255,fill);
+    //}
+    //else if (col.equals("green")) {
+    //  fill(215,223,5,fill);
+    //}
+    
+    fill(0,probevalue/2, 128, 128);
+     
     
     if (probevalue >= 512){
       fill(255,0,0);
